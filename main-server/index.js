@@ -5,9 +5,10 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const controller1 = require('./controllers/login');
-const controller2 = require('./controllers/logout');
-const controller3 = require('./controllers/oauth');
+const accountController = require('./controllers/account');
+//const controller2 = require('./controllers/logout');
+const oAuthController = require('./controllers/oauth');
+const myListController = require('./controllers/mylist');
 const PORT = 4000;
 
 app.use(
@@ -37,9 +38,10 @@ app.use(cors({
 app.get('/', (req, res) => {
   res.send('hello');
 });
-app.post('/login', controller1.login);
-app.post('/logout', controller2.logout);
-app.post('/oauth/login', controller3.oauth);
+app.post('/login', accountController.login);
+app.post('/logout', accountController.logout);
+app.post('/oauth/login', oAuthController.oauth);
+app.use('/mylist', myListController);
 
 const server = https
   .createServer(
