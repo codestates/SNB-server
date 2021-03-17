@@ -58,7 +58,7 @@ const extractPage = ($) => {
     };
   } else {
     return {
-      nowPages: Number(lastChild.text().replace(/[[,]]/g, '')) + 1,
+      nowPages: Number(lastChild.text().replace(/[[,\]]/g, '')) + 1,
       isNext: false
     };
   }
