@@ -9,11 +9,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      list_id:{
+      ListId:{
         type: Sequelize.INTEGER,
         references:{model: 'Lists', key: 'id'}
       },
-      song_id:{
+      SongId:{
         type: Sequelize.INTEGER,
         references:{model: 'Songs', key: 'id'}
       }
