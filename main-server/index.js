@@ -8,6 +8,7 @@ const app = express();
 const controller1 = require('./controllers/login');
 const controller2 = require('./controllers/logout');
 const controller3 = require('./controllers/oauth');
+const controller4 = require('./controllers/signup');
 const PORT = 4000;
 
 app.use(
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 app.post('/login', controller1.login);
 app.post('/logout', controller2.logout);
 app.post('/oauth/login', controller3.oauth);
+app.post('/singup', controller4.signup);
 
 const server = https
   .createServer(
