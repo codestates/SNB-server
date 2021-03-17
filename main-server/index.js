@@ -7,6 +7,7 @@ const fs = require('fs');
 const app = express();
 const controller1 = require('./controllers/login');
 const controller2 = require('./controllers/logout');
+const controller3 = require('./controllers/oauth');
 const PORT = 4000;
 
 app.use(
@@ -28,7 +29,7 @@ app.use(
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://songnumberbook.ga:3000',
+  origin: true,
   Methods: ['POST', 'GET', 'OPTIONS'],
   credentials: true
 }));
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
 });
 app.post('/login', controller1.login);
 app.post('/logout', controller2.logout);
+app.post('/oauth/login', controller3.oauth);
 
 const server = https
   .createServer(
