@@ -8,7 +8,7 @@ const app = express();
 const accountController = require('./controllers/account');
 //const controller2 = require('./controllers/logout');
 const oAuthController = require('./controllers/oauth');
-const myListController = require('./controllers/mylist');
+const myListRouter = require('./routes/mylist');
 const PORT = 4000;
 
 app.use(
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 app.post('/login', accountController.login);
 app.post('/logout', accountController.logout);
 app.post('/oauth/login', oAuthController.oauth);
-app.use('/mylist', myListController);
+app.use('/mylist', myListRouter);
 
 const server = https
   .createServer(
