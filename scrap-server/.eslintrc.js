@@ -2,7 +2,8 @@ module.exports = {
   'env': {
     'browser': true,
     'commonjs': true,
-    'es2021': true
+    'es2021': true,
+    'node': true
   },
   'extends': 'eslint:recommended',
   'parserOptions': {
@@ -33,6 +34,6 @@ module.exports = {
     // 탭 사이즈
     'indent': ['error', 2],
     // console.log 경고
-    'no-console': ['warn'],
+    'no-console': ['warn']
   }
 };
