@@ -34,11 +34,21 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-const {User, List, Song} = sequelize.models;
+const {User, List, Song, List_Song} = sequelize.models;
 List.belongsTo(User);
 User.hasMany(List);
 
-List.belongsToMany(Song, {through: 'List_Song', foreignKey: 'ListId'});
-Song.belongsToMany(List, {through: 'List_Song', foreignKey: 'SongId'});
+List.belongsToMany(Song, {through: 'List_Song', foreignKey: 'ListId', as: 'Song'});
+Song.belongsToMany(List, {through: 'List_Song', foreignKey: 'SongId', as: 'List'});
+
+List_Song.belongsTo(List, {
+  foreignKey: 'ListId', 
+  as: 'List' 
+});
+
+List_Song.belongsTo(Song, {
+  foreignKey: 'SongId', 
+  as: 'Song' 
+});
 
 module.exports = db;
