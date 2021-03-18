@@ -35,13 +35,9 @@ module.exports = {
               res.status(200).json({ 'message': 'ok', lists, email, username, createdAt });
             });
           } else {
-            users.findOne({
-              where: {
-                email: req.body.email,
-                password: req.body.password
-              },
-            }).then((user) => {
+            req.session.save(() => {
               const { email, username, createdAt } = user.dataValues;
+              req.session.userid = email;
               res.status(200).json({ 'message': 'ok', lists, email, username, createdAt });
             });
           }
