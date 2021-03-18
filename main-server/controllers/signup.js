@@ -17,11 +17,15 @@ module.exports = {
             username: username,
           },
         })
-        .then(async (user, created) => {
+        .then((user, created) => {
           if (!created) {
             res.status(409).json({ 'message': 'email exists' });
           } else {
-            res.status(201).json({ 'message': 'welcome' });
+            req.session.save(() => {
+              const { email, username, createdAt } = user[0].dataValues;
+              req.session.userid = email;
+              res.status(200).json({ 'message': 'ok', lists: [], email, username, createdAt });
+            });
           }
         });
     }
