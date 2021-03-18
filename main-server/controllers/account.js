@@ -1,11 +1,15 @@
-const { users } = require('../models'); // 데이터베이스 구현되어야함
+const { User } = require('../models');
 
 module.exports = {
   login: async (req, res) => {
-    // console.log(req.body) // email, password 들어옴
+    // console.log(req.body); // email, password 들어옴
     // console.log(req.session) // 세션 들어와야함 (쿠키포함)
-    const userInfo = await users.findOne({
-      where: { email: req.body.email, password: req.body.password },
+
+    const userInfo = await User.findOne({
+      where: {
+        email: req.body.email,
+        password: req.body.password
+      },
     });
 
     if (!userInfo) {
