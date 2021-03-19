@@ -1,9 +1,9 @@
-const { User: users, List: lists } = require('../models');
+const { User: UserModel, List: ListModel } = require('../models');
 
 module.exports = {
   login: async (req, res) => {
     // console.log(req.body); // email, password 들어옴
-    users.findOne({
+    UserModel.findOne({
       where: {
         email: req.body.email,
         password: req.body.password
@@ -12,13 +12,13 @@ module.exports = {
       if (!user) {
         res.status(404).json({ 'message': 'Invalid user or Wrong password' });
       } else {
-        users.findAll({
+        UserModel.findAll({
           where: {
             email: user.dataValues.email,
           },
           include: [
             {
-              model: lists,
+              model: ListModel,
               required: true,
               attributes: ['id', 'name'],
             }
@@ -42,11 +42,12 @@ module.exports = {
             });
           }
         }).catch(e => {
-          res.status(500);
+          res.status(500).json({ e });
         });
       }
     });
   },
+
   logout: async (req, res) => {
     req.session.destroy();
     res.status(200).json({ 'message': 'ok' });
