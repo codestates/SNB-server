@@ -1,4 +1,4 @@
-const { User: users } = require('../models');
+const { User: UserModel } = require('../models');
 
 module.exports = {
   signup: async (req, res) => {
@@ -7,7 +7,7 @@ module.exports = {
     if (!email || !password || !username) {
       res.status(422).json({ 'message': 'insufficient parameters supplied' });
     } else {
-      users
+      const [user, created] = await UserModel
         .findOrCreate({
           where: {
             email: email,
@@ -16,18 +16,17 @@ module.exports = {
             password: password,
             username: username,
           },
-        })
-        .then((user, created) => {
-          if (!created) {
-            res.status(409).json({ 'message': 'email exists' });
-          } else {
-            req.session.save(() => {
-              const { email, username, createdAt } = user[0].dataValues;
-              req.session.userid = email;
-              res.status(200).json({ 'message': 'ok', lists: [], email, username, createdAt });
-            });
-          }
         });
+
+      if (!created) {
+        res.status(409).json({ 'message': 'email exists' });
+      } else {
+        req.session.save(() => {
+          const { email, username, createdAt } = user.dataValues;
+          req.session.userid = email;
+          res.status(200).json({ 'message': 'ok', lists: [], email, username, createdAt });
+        });
+      }
     }
   },
 };

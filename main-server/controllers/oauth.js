@@ -1,6 +1,6 @@
 require('dotenv').config();
 const axios = require('axios');
-const { User: users, List: lists } = require('../models');
+const { User: UserModel, List: ListModel } = require('../models');
 
 
 const clientID = process.env.GITHUB_CLIENT_ID;
@@ -25,10 +25,10 @@ module.exports = {
       axios.defaults.headers.common.authorization = 'token ' + accessToken;
       axios.get('https://api.github.com/user')
         .then((result) => {
-          users
+          UserModel
             .findOrCreate({
               where: {
-                email: result.data.email,
+                email: `${result.data.login}@github.com`,
               },
               defaults: {
                 password: 'liIIl1lIll1Iii',
@@ -36,14 +36,15 @@ module.exports = {
               },
             })
             .then((user) => {
+
               const { email } = user[0].dataValues;
-              users.findAll({
+              UserModel.findAll({
                 where: {
                   email: email,
                 },
                 include: [
                   {
-                    model: lists,
+                    model: ListModel,
                     required: true,
                     attributes: ['id', 'name'],
                   }
@@ -61,7 +62,7 @@ module.exports = {
                   });
                 } else {
                   req.session.save(() => {
-                    const { email, username, createdAt } = user.dataValues;
+                    const { email, username, createdAt } = user[0].dataValues;
                     req.session.userid = email;
                     res.status(200).json({ 'message': 'ok', lists, email, username, createdAt });
                   });
