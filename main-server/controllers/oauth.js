@@ -28,7 +28,7 @@ module.exports = {
           UserModel
             .findOrCreate({
               where: {
-                email: result.data.email,
+                email: `${result.data.login}@github.com`,
               },
               defaults: {
                 password: 'liIIl1lIll1Iii',
@@ -36,6 +36,7 @@ module.exports = {
               },
             })
             .then((user) => {
+
               const { email } = user[0].dataValues;
               UserModel.findAll({
                 where: {
@@ -61,7 +62,7 @@ module.exports = {
                   });
                 } else {
                   req.session.save(() => {
-                    const { email, username, createdAt } = user.dataValues;
+                    const { email, username, createdAt } = user[0].dataValues;
                     req.session.userid = email;
                     res.status(200).json({ 'message': 'ok', lists, email, username, createdAt });
                   });
