@@ -24,7 +24,7 @@ module.exports = {
             return list.dataValues;
           });
         }
-        res.status(200).json({ 'message': 'ok', 'list': lists });
+        res.status(200).json({ 'message': 'ok', lists });
       }).catch(e => {
         res.status(500);
       });
