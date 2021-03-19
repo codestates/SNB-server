@@ -1,11 +1,11 @@
-const { User } = require('../models');
+const { User: users } = require('../models');
 
 module.exports = {
   login: async (req, res) => {
     // console.log(req.body); // email, password 들어옴
     // console.log(req.session) // 세션 들어와야함 (쿠키포함)
 
-    const userInfo = await User.findOne({
+    const userInfo = await users.findOne({
       where: {
         email: req.body.email,
         password: req.body.password

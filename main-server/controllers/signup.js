@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User: users } = require('../models');
 
 module.exports = {
   signup: async (req, res) => {
@@ -7,7 +7,7 @@ module.exports = {
     if (!email || !password || !username) {
       res.status(422).json({ 'message': 'insufficient parameters supplied' });
     } else {
-      User
+      users
         .findOrCreate({
           where: {
             email: email,
