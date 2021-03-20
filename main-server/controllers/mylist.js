@@ -88,6 +88,7 @@ const myListController = {
         model: SongModel,
         required: true,
         attributes: ['songNum', 'title'],
+        as: 'Song',
         through: {
           attributes: ['ListId', 'SongId']
         }
