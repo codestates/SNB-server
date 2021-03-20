@@ -61,7 +61,6 @@ const myListController = {
 
   remove: async (req, res) => {
     const { listid: listId } = req.body;
-    console.log(req.body);
     const result = await ListModel.destroy({
       where: {
         id: listId
@@ -72,7 +71,6 @@ const myListController = {
       res.status(500).json({ 'message': 'fail to delete mylist' });
     } else {
       res.status(200).json({ 
-        'id': result.id,
         'message': 'deleted' 
       });
     }
