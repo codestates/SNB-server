@@ -1,4 +1,4 @@
-const { users } = require('../models'); // 데이터베이스 구현되어야함
+const { User: users } = require('../models'); // 데이터베이스 구현되어야함
 
 module.exports = {
   login: async (req, res) => {
