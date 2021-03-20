@@ -61,7 +61,6 @@ const myListController = {
 
   remove: async (req, res) => {
     const { listid: listId } = req.body;
-
     const result = await ListModel.destroy({
       where: {
         id: listId
@@ -71,7 +70,9 @@ const myListController = {
     if (!result) {
       res.status(500).json({ 'message': 'fail to delete mylist' });
     } else {
-      res.status(200).json({ 'message': 'deleted' });
+      res.status(200).json({ 
+        'message': 'deleted' 
+      });
     }
   },
 
@@ -84,7 +85,8 @@ const myListController = {
       include: [{
         model: SongModel,
         required: true,
-        attributes: ['songNum', 'title'],
+        attributes: ['songNum', 'title', 'singer', 'link'],
+        as: 'Song',
         through: {
           attributes: ['ListId', 'SongId']
         }
