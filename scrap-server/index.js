@@ -14,7 +14,7 @@ app.use(logger('dev'));
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://localhost:3000',
+  origin: true,
   methods: ['GET', 'OPTION'],
   credentials: true,
 }));
