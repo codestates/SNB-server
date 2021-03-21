@@ -2,13 +2,13 @@ const { Song: SongModel, List_Song: ListSongModel } = require('../models');
 
 module.exports = {
   add: (req, res) => {
-    const {listid: id, songs} = req.body;
+    const { listid: id, songs } = req.body;
 
-    try{
+    try {
       //1. song 테이블에 없으면 데이터를 song 테이블에 추가한 후 song의 id를 얻는다.
-      const songIdPromises = songs.map(({songNum, title, singer, link}, _) => {
+      const songIdPromises = songs.map(({ songNum, title, singer, link }, _) => {
         return SongModel.findOrCreate({
-          where: {songNum},
+          where: { songNum },
           defaults: {
             songNum,
             title,
@@ -35,30 +35,24 @@ module.exports = {
           });
           Promise.all(insertingPromise)
             .then((result) => {
-              res.status(200).json({'message': 'created'});
+              res.status(200).json({ 'message': 'created' });
             })
             .catch((error) => {
-              res.status(500).json({'message': 'fail to insert songs in my list'});
+              res.status(500).json({ 'message': 'fail to insert songs in my list' });
             });
         });
-    }catch(error) {
-      res.status(500).json({'message': 'fail to insert songs in my list'});
+    } catch (error) {
+      res.status(500).json({ 'message': 'fail to insert songs in my list' });
     }
   },
   remove: async (req, res) => {
-    const {listid: id, songs} = req.body;
+    const { listid: id, songs } = req.body;
 
-    try{
+    try {
       //1. song 테이블에서 song의 id를 구한다.
-      const songIdPromises = songs.map(({songNum, title, singer, link}, _) => {
+      const songIdPromises = songs.map(({ songNum }, _) => {
         return SongModel.findOne({
-          where: {songNum},
-          defaults: {
-            songNum,
-            title,
-            singer,
-            link
-          }
+          where: { songNum },
         });
       });
 
@@ -75,14 +69,14 @@ module.exports = {
           });
           Promise.all(insertingPromise)
             .then(() => {
-              res.status(200).json({'message': 'deleted'});
+              res.status(200).json({ 'message': 'deleted' });
             })
             .catch((error) => {
-              res.status(500).json({'message': 'fail to insert songs in my list'});
+              res.status(500).json({ 'message': 'fail to remove songs in my list' });
             });
         });
-    }catch(error) {
-      res.status(500).json({'message': 'fail to insert songs in my list'});
+    } catch (error) {
+      res.status(500).json({ 'message': 'fail to remove songs in my list' });
     }
   }
 };

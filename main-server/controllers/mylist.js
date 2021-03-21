@@ -1,4 +1,4 @@
-const { User: UserModel, List: ListModel, Song: SongModel } = require('../models');
+const { User: UserModel, List: ListModel, Song: SongModel, List_Song: ListSongModel } = require('../models');
 
 const myListController = {
   listName: async (req, res) => {
@@ -60,20 +60,23 @@ const myListController = {
   },
 
   remove: async (req, res) => {
-    const { listid: listId } = req.body;
 
-    const result = await ListModel.destroy({
+    const { listid: id } = req.body;
+    ListSongModel.destroy({
       where: {
-        id: listId
+        ListId: id,
       }
-    });
-
-    if (!result) {
-      res.status(500).json({ 'message': 'fail to delete mylist' });
-    } else {
+    }).then(() => {
+      ListModel.destroy({
+        where: {
+          id: id
+        }
+      });
+    }).then(() => {
       res.status(200).json({ 'message': 'deleted' });
-    }
-  },
+    });
+  }
+  ,
 
   inquiry: async (req, res) => {
     const { listid: listId } = req.body;
@@ -85,13 +88,19 @@ const myListController = {
         model: SongModel,
         required: true,
         attributes: ['songNum', 'title'],
+        as: 'Song',
         through: {
           attributes: ['ListId', 'SongId']
         }
       }]
     });
     if (!result) {
-      res.status(400).json({ 'message': 'invalid request' });
+      const result = await ListModel.findOne({
+        where: {
+          id: listId
+        },
+      });
+      res.status(200).json({ result, 'Song': [] });
     } else {
       res.status(200).json(result);
     }
