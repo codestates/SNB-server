@@ -17,7 +17,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      domain: true, // 배포할때 songnumberbook.ga 로 변경해야함
+      // domain: true,  // 없어야 세션 저장한 값 유지가능
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'None',
