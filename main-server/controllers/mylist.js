@@ -87,7 +87,7 @@ const myListController = {
       include: [{
         model: SongModel,
         required: true,
-        attributes: ['songNum', 'title'],
+        attributes: ['songNum', 'title', 'singer', 'link'],
         as: 'Song',
         through: {
           attributes: ['ListId', 'SongId']
