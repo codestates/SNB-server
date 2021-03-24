@@ -5,3 +5,6 @@ logs
 .env
 cert.pem
 key.pem
+
+fullchain.pem
+privkey.pem

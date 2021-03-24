@@ -6,3 +6,5 @@ yarn.lock
 
 key.pem
 cert.pem
+fullchain.pem
+privkey.pem
