@@ -9,15 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ListId:{
+      ListId: {
         type: Sequelize.INTEGER,
-        references:{model: 'Lists', key: 'id'}
+        references: {model: 'Lists', key: 'id'}
       },
-      SongId:{
+      SongId: {
         type: Sequelize.INTEGER,
-        references:{model: 'Songs', key: 'id'}
+        references: {model: 'Songs', key: 'id'}
       }
-    })
+    });
   },
 
   down: async (queryInterface, Sequelize) => {

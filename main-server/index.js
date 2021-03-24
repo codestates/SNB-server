@@ -5,9 +5,10 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const controller1 = require('./controllers/login');
-const controller2 = require('./controllers/logout');
-const controller3 = require('./controllers/oauth');
+const accountController = require('./controllers/account');
+const oAuthController = require('./controllers/oauth');
+const signupController = require('./controllers/signup');
+const myListRouter = require('./routes/mylist');
 const PORT = 4000;
 
 app.use(
@@ -16,7 +17,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      domain: 'songnumberbook.ga',
+      domain: true, // 배포할때 songnumberbook.ga 로 변경해야함
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'None',
@@ -34,12 +35,14 @@ app.use(cors({
   credentials: true
 }));
 
-app.get('/', (req, res) => {
-  res.send('hello');
-});
-app.post('/login', controller1.login);
-app.post('/logout', controller2.logout);
-app.post('/oauth/login', controller3.oauth);
+// app.get('/', (req, res) => {
+//   res.send('hello');
+// });
+app.post('/login', accountController.login);
+app.post('/logout', accountController.logout);
+app.post('/oauth/login', oAuthController.oauth);
+app.post('/signup', signupController.signup);
+app.use('/mylist', myListRouter);
 
 const server = https
   .createServer(

@@ -25,15 +25,21 @@ const getSingerURL = (singer, rowOfNum, page) => {
 
 const getFormatedSongArr = (arr) => {
   const resultArr = [];
-  for (let i = 1; i < arr.length; i += 3) {
-    resultArr.push([arr[i], ...arr[i + 1].split('\n')]);
+  for (let i = 0; i < arr.length - 9; i += 9) {
+    let song = [];
+    for(let j = i; j < i + 9; j++) {
+      if(arr[j] !== '') {
+        song.push(arr[j]);
+      }
+    }
+    resultArr.push(song);
   }
   return resultArr;
 };
 
 const extractSong = ($) => {
-  const formatedArr =
-    getFormatedSongArr($('#BoardType1 > table > tbody > tr:not(:first-child)').text().replace(/[\t]/g, '').split('\n\n'));
+  const arr = $('#BoardType1 > table > tbody > tr:not(:first-child)').text().replace(/[\t]/g, '').split('\n');
+  const formatedArr = getFormatedSongArr(arr);
 
   return formatedArr.reduce((acc, cur) => {
     const [songNum, title, singer, writer, composer] = cur;

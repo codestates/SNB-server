@@ -14,7 +14,7 @@ app.use(logger('dev'));
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://localhost:3000',
+  origin: true,
   methods: ['GET', 'OPTION'],
   credentials: true,
 }));
@@ -35,13 +35,13 @@ app.use('/v1', v1Router);
 
 // 로컬에서 작동하는코드
 let server;
-if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
-  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8");
-  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8");
+if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
+  const privateKey = fs.readFileSync(__dirname + '/key.pem', 'utf8');
+  const certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
   const credentials = { key: privateKey, cert: certificate };
 
   server = https.createServer(credentials, app);
-  server.listen(port, () => console.log("server runnning by https"));
+  server.listen(port, () => console.log('server runnning by https'));
 } else {
   server = app.listen(port, () => {
     console.log(`server listening on ${port} by http`);

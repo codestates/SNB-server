@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       //models.user.hasMany(models.list);
     }
-  };
+  }
   User.init({
     email: DataTypes.STRING,
     username: DataTypes.STRING,

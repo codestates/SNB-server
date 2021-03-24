@@ -2,8 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-   const users = await queryInterface.sequelize.query(`SELECT id FROM Users;`);
-   console.log(users[0]);
+    const users = await queryInterface.sequelize.query('SELECT id FROM Users;');
 
     await queryInterface.bulkInsert('Lists', [
       {
