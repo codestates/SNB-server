@@ -50,6 +50,35 @@ Advanced HA를 치루면서 sprint들의 연관성에 대해 조금 알게되었
 나는 운이 좋다 이런 부족한 팀장을 따라주는 팀원들을 만난건 이번 프로젝트에서 가장 좋았던 부분이다.  
 팀원분들에게 프로젝트를 함께 할수 있어 감사하다고 전한다.
 
+<details>
+<summary>Worklog 📘</summary>
+<div markdown="1">       
+
+- UI Design 문서 작성
+  - 로그인, 홈, 검색페이지, 마이 페이지의 와이어 프레임 작성
+  - 구현된 와이어 프레임을 바탕으로 데이터 흐름에 대한 내용 정립
+- GIthub Repository 관리
+  - Issues 생성 및 Pull Requests, branch 관리
+  - Reademe.md, wiki 작성
+- Deploy 환경 구축
+  - AWS EC2, RDS, S3를 사용하여 클라이언트와 서버 배포 환경 세팅
+  - Freenom, AWS Route53을 사용하여 도메인 설정을 한 후, Lets Encrypt, AWS Cloud Front로 HTTPS 적용
+- 백엔드, 프론트엔드 작업 환경 설정
+  - Node.js, React, Dotenv, ESLint의 환경 설정 및 연결 작업 진행
+- Login & Signup
+  - Login, Signup UI 제작
+  - 회원가입, 로그인 시 유효성 검사 기능 추가
+  - Oauth 2.0 Github 로그인 Authorization Code 발급 구현
+- Mypage
+  - Mypage UI 구현
+  - Mylist 추가, 삭제 기능 구현 및 UI 제작
+  - Songlist 노래 삭제 기능 구현 및 UI 제작
+- Songs
+  - 체크박스 UI 제작
+
+</div>
+</details>
+
 # 💾 Tech Stack
 
 ## Common
