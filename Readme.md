@@ -51,7 +51,7 @@ Advanced HA를 치루면서 sprint들의 연관성에 대해 조금 알게되었
 팀원분들에게 프로젝트를 함께 할수 있어 감사하다고 전한다.
 
 <details>
-<summary>Worklog 📘</summary>
+<summary>백광호의 Worklog 📘</summary>
 <div markdown="1">       
 
 - UI Design 문서 작성
