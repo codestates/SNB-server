@@ -19,6 +19,10 @@
 |임혜림|🏆 Fullstack|
 |이은정|🎖 Backend|
 
+## Retrospection
+
+// TODO
+
 # 💾 Tech Stack
 
 ## Common
