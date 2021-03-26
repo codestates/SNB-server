@@ -103,11 +103,11 @@ Advanced HA를 치루면서 sprint들의 연관성에 대해 조금 알게되었
   - 리스트를 입력받아 노래와 함께 axios를 이용해 서버에 POST요청
   - 노래 추가시 유효성 검사
   - css: Addsong 컴포넌트 UI구현
--  Song Component
+- Song Component
   - Header와 Addsong 컴포넌트에서 전달받은 값을 react-hooks를 이용해 state로 관리
   - 체크박스에 체크된 value를 구분하여 Search페이지에 전달
   - css: Song 컴포넌트 UI구현
--  Mypage
+- Mypage
   - css: flex사용하여 페이지 레이아웃 배치
   - css: flex사용하여 userInfo 레이아웃 배치
   
