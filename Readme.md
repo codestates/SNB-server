@@ -83,6 +83,7 @@ Advanced HA를 치루면서 sprint들의 연관성에 대해 조금 알게되었
 <details>
 <summary>김유상의 Worklog 📘</summary>
 <div markdown="1">   
+  
 - Signup Page
   - axios 사용하여 서버에 input value에 따른 회원가입 요청
   - 회원가입 요청후 서버 응답에 따라 Login상태 변경
