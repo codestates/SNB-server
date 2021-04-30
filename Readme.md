@@ -2,7 +2,7 @@
 
 <img src="https://songnumberbook.ga/static/media/snb_logo.3845d09d.png" height="100px" />
 
-[SongNumberBook](https://songnumberbook.ga)
+[SongNumberBook](https://songnumberbook.shop)
 
 노래방에서 노래부르는 시간보다 노래를 고르는 시간이 더 많지 않으셨나요?   
 다른사람이 노래를 부를때 핸드폰만 만지며 어떤 노래를 부를지 고민하지 않으셨나요?   
